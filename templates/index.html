@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Unit Converter</h1>
+
+    <nav>
+        <a href="/length">Length Converter</a>
+        <a href="/weight">Weight Converter</a>
+        <a href="/temperature">Temperature Converter</a>        
+    </nav>
+
+    <hr>
+
+    <h2> convert {{category}}</h2>
+
+    <form method="post">
+        <input type="number" name="value" placeholder="Enter value" required>
+        <select name="from_unit">
+            {% for unit in units %}
+                <option value="{{ unit }}">{{ unit }}</option>
+            {% endfor %}
+        </select>
+        to
+        <select name="to_unit">
+            {% for unit in units %}
+                <option value="{{ unit }}">{{ unit }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Convert</button>
+    </form>
+
+    <hr>
+    
+    {% if result is not none %}
+        <div class="result">
+            <h3>Result:</h3>
+            <p>{{ original_value }} {{ from_unit }} = <strong>{{ result }} {{ to_unit }}</strong></p>
+            <a href="/">Convert another</a>
+        </div>
+    {% endif %}
+</body>
+</html>
